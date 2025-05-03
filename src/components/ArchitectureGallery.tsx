@@ -17,8 +17,8 @@ type Project = {
 
 // Your project images (replace with your actual images)
 const PROJECTS: Omit<Project, 'position' | 'rotation' | 'size'>[] = [
-    { id: 1, title: 'URBAN OASIS', image: '/assets/3361514.jpg' },
-    { id: 2, title: 'GLASS PAVILION', image: '/assets/what-is-design-02.jpg' },
+    { id: 1, title: 'URBAN OASIS', image: '/img1.jpg' },
+    { id: 2, title: 'GLASS PAVILION', image: '/img2.jpg' },
     { id: 3, title: 'MOUNTAIN RETREAT', image: '/assets/3361514.jpg' },
     { id: 4, title: 'CULTURAL CENTER', image: '/assets/what-is-design-02.jpg' },
     { id: 5, title: 'SKYLINE TOWER', image: '/assets/3361514.jpg' },
@@ -51,7 +51,7 @@ const PROJECTS: Omit<Project, 'position' | 'rotation' | 'size'>[] = [
     // Arrange projects in a 3D space with proper typing
     const projects: Project[] = PROJECTS.map((project, i) => {
       const angle = (i / PROJECTS.length) * Math.PI * 2
-      const radius = 5
+      const radius = 8
       const x = Math.sin(angle) * radius
       const z = Math.cos(angle) * radius
       

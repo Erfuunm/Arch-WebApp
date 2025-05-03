@@ -1,0 +1,58 @@
+.gallery-container {
+    position: fixed;
+    width: 200vw;
+    height: 150vh;
+    transform: translate(-5%, -5%);
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    touch-action: none;
+}
+
+
+.gallery-container:active {
+    cursor: grabbing;
+}
+
+
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5%;
+}
+
+.gallery-image {
+    width: 10%;
+    height: 20%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+    transition: opacity 0.5s ease-out;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    background-color: transparent !important;
+    filter: none !important;
+    opacity: 1 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: none !important;
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 0 0 transparent);
+    -webkit-filter: drop-shadow(0 0 0 transparent);
+}
+
+.gallery-image:hover {
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Optional: Scale effect on drag */
+.gallery-container.dragging .gallery-image {
+    transform: scale(0.95);
+}
