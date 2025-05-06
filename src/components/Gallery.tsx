@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
-import { motion } from 'framer-motion';
 import './Gallery.css';
 
 gsap.registerPlugin(Draggable);
+
 
 const Gallery = () => {
     const galleryContainerRef = useRef<HTMLDivElement>(null);
@@ -42,12 +42,13 @@ const Gallery = () => {
         { id: 24, className: "gallery-image", url: '/img2.jpg', aspectRatio: 16/9  },
     ];
 
+    // Initialize ref array length
     const setImageRef = (index: number) => (el: HTMLDivElement | null) => {
         if (el) imageRefs.current[index] = el;
     };
 
     useEffect(() => {
-        // Fade-in animation for images
+        // Fade-in animation
         gsap.to(imageRefs.current, {
             opacity: 1,
             duration: 1,
@@ -150,12 +151,6 @@ const Gallery = () => {
             }
         };
 
-        const getRandomMarginClass = () => {
-            const options = ['margin-small', 'margin-medium', 'margin-large'];
-            return options[Math.floor(Math.random() * options.length)];
-        };
-          
-
         window.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
@@ -166,13 +161,7 @@ const Gallery = () => {
     }, [scale]);
 
     return (
-        <motion.div
-            className="gallery-container"
-            ref={galleryContainerRef}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-        >
+        <div className="gallery-container" ref={galleryContainerRef}>
             <div className="gallery">
                 {images.map((img, index) => (
                     <div
@@ -188,7 +177,7 @@ const Gallery = () => {
                 ))}
             </div>
             <div className="zoom-indicator">Zoom: {(scale * 100).toFixed(0)}%</div>
-        </motion.div>
+        </div>
     );
 };
 
