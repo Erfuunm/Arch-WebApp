@@ -30,7 +30,7 @@
 /* Gallery Image Styling */
 .gallery-image {
     width: 100%;
-    height: 100%;
+    height: auto;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,6 +48,13 @@
     position: relative;
     overflow: hidden;
 }
+
+.gallery-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0; /* Adjust this as needed */
+  }
 
 /* Image Hover Effect */
 .gallery-image:hover {
@@ -73,4 +80,20 @@
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+}
+
+.margin-none {
+  margin: 0;
+}
+
+.margin-sm {
+  margin: 5px;
+}
+
+.margin-md {
+  margin: 10px;
+}
+
+.margin-lg {
+  margin: 15px;
 }

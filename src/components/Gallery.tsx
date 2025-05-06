@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
+import { motion } from 'framer-motion';
 import './Gallery.css';
 
 gsap.registerPlugin(Draggable);
@@ -53,14 +54,6 @@ const Gallery = () => {
             stagger: 0.1,
             ease: "power2.inOut"
         });
-
-        // Smooth landing animation for the gallery container (fade and scale)
-        if (galleryContainerRef.current) {
-            gsap.fromTo(galleryContainerRef.current, 
-                { opacity: 0, scale: 0.8 }, // Start with low opacity and small scale
-                { opacity: 1, scale: 1, duration: 1, ease: "power2.out" } // Fade-in and scale-up smoothly
-            );
-        }
 
         // Physics-based smooth dragging
         const applyInertia = () => {
@@ -157,6 +150,12 @@ const Gallery = () => {
             }
         };
 
+        const getRandomMarginClass = () => {
+            const options = ['margin-small', 'margin-medium', 'margin-large'];
+            return options[Math.floor(Math.random() * options.length)];
+        };
+          
+
         window.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
@@ -167,7 +166,13 @@ const Gallery = () => {
     }, [scale]);
 
     return (
-        <div className="gallery-container" ref={galleryContainerRef}>
+        <motion.div
+            className="gallery-container"
+            ref={galleryContainerRef}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+        >
             <div className="gallery">
                 {images.map((img, index) => (
                     <div
@@ -183,7 +188,7 @@ const Gallery = () => {
                 ))}
             </div>
             <div className="zoom-indicator">Zoom: {(scale * 100).toFixed(0)}%</div>
-        </div>
+        </motion.div>
     );
 };
 

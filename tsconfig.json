@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
     "types": ["@react-spring/three", "@react-spring/web"] ,
     "target": "es5",
     "lib": [
